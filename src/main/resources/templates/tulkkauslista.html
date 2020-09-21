@@ -1,0 +1,31 @@
+<! DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Tulkkaukset</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+</head>
+<body>
+<div class="container">
+	<h1>Tervetuloa tulkkaussivulle!</h1>
+	<table class="table table-striped">
+		
+			<tr th:each = "tulkkaus : ${tulkkaukset}">
+				<td th:text="${tulkkaus.tilaaja}"></td>
+				<td th:text="${tulkkaus.aihe}"></td>
+				<td th:text="${tulkkaus.tulkkauspaikka}"></td>
+				<td th:text="${tulkkaus.osoite}"></td>
+				<td th:text="${tulkkaus.tulkkauskieli.tulkkauskieli}"></td>
+				<td th:text="${tulkkaus.tulkkaustyyppi.tulkkaustyyppi}"></td>
+				<td th:text="${tulkkaus.pvm}"></td>
+				<td><a th:href="@{/delete/{id}(id=${tulkkaus.id})}" class="btn btn-danger">Poista</a></td>
+				<td><a th:href="@{/edit/{id}(id=${tulkkaus.id})}" class="btn btn-danger">Muokkaa</a></td>
+			</tr>
+		
+	</table>
+	<a href="/add"  class="btn btn-success">Lisää uusi tulkkaus</a>
+	</div>
+</body>
+
+
+</html>

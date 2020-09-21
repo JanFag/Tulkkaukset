@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<title>Edit </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2>Muokkaa tulkkaus</h2>
+  <form action="#" th:object="${tulkkaus}" th:action="@{/..save}" method="post">
+  <input type="hidden" id="id" th:field="*{id}" />
+    <div class="form-group">
+      <label for="title">Tilaaja:</label>
+      <input type="text" class="form-control" id="tilaaja" placeholder="Syˆt‰ tilaaja" th:field="*{tilaaja}">
+    </div>
+    <div class="form-group">
+      <label for="author">Tulkkauksen aihe:</label>
+      <input type="text" class="form-control" id="aihe" placeholder="Anna lis‰tietoja tulkkauksen aiheesta" th:field="*{aihe}">
+    </div>
+    <div class="form-group">
+      <label for="year">Tulkkauspaikka:</label>
+      <input type="text" class="form-control" id="tulkkauspaikka" placeholder="Syˆt‰ tulkkauspaikka" th:field="*{tulkkauspaikka}">
+    </div>
+    <div class="form-group">
+      <label for="osoite">Tulkkauspaikan osoite:</label>
+      <input type="text" class="form-control" id="osoite" placeholder="Syˆt‰ tulkkauspaikan osoite" th:field="*{osoite}">
+    </div>
+  
+    <div class="form-group col-md-4">
+      <label for="inputTulkkauskieli">Valitse tulkkauskieli:</label>
+      <select id="inputTulkkauskieli" th:field="*{tulkkauskieli}" class="form-control">
+        <option th:each="tulkkauskieli: ${tulkkauskielet}" th:value="${tulkkauskieli.tulkkauskieliId}" th:text="${tulkkauskieli.tulkkauskieli}"></option>
+      </select>
+    </div>
+	<div class="form-group col-md-4">
+      <label for="inputTulkkaustyyppi">Valitse tulkkaustyyppi:</label>
+      <select id="inputTulkkaustyyppi" th:field="*{tulkkaustyyppi}" class="form-control">
+        <option th:each="tulkkaustyyppi: ${tulkkaustyypit}" th:value="${tulkkaustyyppi.tulkkaustyyppiId}" th:text="${tulkkaustyyppi.tulkkaustyyppi}"></option>
+      </select>
+    </div>
+        <div class="form-group">
+      <label for="pvm">Tulkkauksen p‰iv‰m‰‰r‰ ja kellonaika:</label>
+      <input type="text" class="form-control" id="osoite" placeholder="Syˆt‰ tulkkauksen p‰iv‰m‰‰r‰ ja kellonaika" th:field="*{pvm}">
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+  </form>
+</div>
+
+</body>
+</html>
