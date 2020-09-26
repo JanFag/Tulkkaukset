@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 
 
@@ -24,10 +26,12 @@ public class Tulkkaus {
 	private String pvm;
 	
 	@ManyToOne
+    @JsonIgnore
 	@JoinColumn(name = "tulkkauskieli_id")
 	private Tulkkauskieli tulkkauskieli;
 	
 	@ManyToOne
+	@JsonIgnore
 	@JoinColumn(name = "tulkkaustyyppi_id")
 	private Tulkkaustyyppi tulkkaustyyppi;
 
