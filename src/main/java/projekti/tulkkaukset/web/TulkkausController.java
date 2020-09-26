@@ -44,13 +44,13 @@ public class TulkkausController {
 	@PostMapping("/save")
 	public String saveTulkkaus(Tulkkaus tulkkaus) {
 		repository.save(tulkkaus);
-		return "redirect:tulkkauslist";
+		return "redirect:/";
 	}
 	
 	@GetMapping("/delete/{id}")
 	public String deleteTulkkaus(@PathVariable("id") Long tulkkausId, Model model){
 		repository.deleteById(tulkkausId);
-		return "redirect:../tulkkauslist";
+		return "redirect:../";
 	}
 	
 	@GetMapping("/edit/{id}")

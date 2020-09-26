@@ -3,11 +3,13 @@ package projekti.tulkkaukset.domain;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 
 
@@ -15,15 +17,15 @@ import javax.persistence.OneToMany;
 public class Tulkkaustyyppi {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long tulkkaustyyppi_id;
-	private String tulkkaustyyppi;
+	private Long id;
+	
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tulkkaustyyppi")
 	private List<Tulkkaus> tulkkaukset;
-
-	public Tulkkaustyyppi(String tulkkaustyyppi) {
+	
+	public Tulkkaustyyppi(String tulkkaustyypinnimi) {
 		super();
-		this.tulkkaustyyppi = tulkkaustyyppi;
+		this.tulkkaustyypinnimi = tulkkaustyypinnimi;
 		
 	}
 
@@ -31,21 +33,27 @@ public class Tulkkaustyyppi {
 		
 	}
 
-	public Long getTulkkaustyyppi_id() {
-		return tulkkaustyyppi_id;
+	public void setId(Long tulkkaustyyppiId) {
+		this.id = tulkkaustyyppiId;
 	}
 
-	public void setTulkkaustyyppi_id(Long tulkkaustyyppi_id) {
-		this.tulkkaustyyppi_id = tulkkaustyyppi_id;
+	private String tulkkaustyypinnimi;
+	
+	public String getTulkkaustyypinnimi() {
+		return tulkkaustyypinnimi;
 	}
 
-	public String getTulkkaustyyppi() {
-		return tulkkaustyyppi;
+	public void setTulkkaustyypinnimi(String tulkkaustyypinnimi) {
+		this.tulkkaustyypinnimi = tulkkaustyypinnimi;
 	}
 
-	public void setTulkkaustyyppi(String tulkkaustyyppi) {
-		this.tulkkaustyyppi = tulkkaustyyppi;
+	public Long getId() {
+		return id;
 	}
+
+
+
+
 
 	public List<Tulkkaus> getTulkkaukset() {
 		return tulkkaukset;
@@ -57,7 +65,7 @@ public class Tulkkaustyyppi {
 
 	@Override
 	public String toString() {
-		return "Tulkkaustyyppi [tulkkaustyyppi_id=" + tulkkaustyyppi_id + ", tulkkaustyyppi=" + tulkkaustyyppi + "]";
+		return "Tulkkaustyyppi [tulkkaustyyppiId=" + this.id + ", tulkkaustyyppi=" + this.tulkkaustyypinnimi + "]";
 	}
 	
 	

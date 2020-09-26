@@ -6,7 +6,9 @@ import org.springframework.data.repository.CrudRepository;
 
 
 
+
+
 public interface TulkkauskieliRepository extends CrudRepository<Tulkkauskieli, Long> {
 
-	List<Tulkkauskieli> findByName(String tulkkauskieli);
-}
+	List<Tulkkauskieli> findAll();
+  }

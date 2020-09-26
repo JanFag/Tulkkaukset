@@ -1,11 +1,13 @@
 package projekti.tulkkaukset.domain;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
 
 
 
@@ -150,7 +152,7 @@ public class Tulkkaus {
 	@Override
 	public String toString() {
 		return "Tulkkaus [id=" + id + ", tilaaja=" + tilaaja + ", aihe=" + aihe + ", tulkkauspaikka=" + tulkkauspaikka
-				+ ", osoite=" + osoite + ", pvm=" + pvm + "]";
+				+ ", osoite=" + osoite + ", pvm=" + pvm + ", tulkkaustyyppi"+ this.getTulkkaustyyppi() + ", tulkkauskieli" + this.getTulkkauskieli()+ "]";
 	}
 
 
