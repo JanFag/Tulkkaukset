@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="https://www.thymeleaf.org" lang="fi">
 <head>
-<title>Edit </title>
+<title>Muokkaa tulkkaus</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -11,8 +11,9 @@
 </head>
 <body>
 
+<p></p>
 <div class="container">
-  <h2>Muokkaa tulkkaus</h2>
+  <h3 class="bg-primary text-white">Muokkaa tulkkaus</h3>
   <form action="#" th:object="${tulkkaus}" th:action="@{/save}" method="post">
   <input type="hidden" id="id" th:field="*{id}" />
     <div class="form-group">

@@ -39,6 +39,13 @@ public class TulkkausController {
 		return "tulkkauslista";
 	}
 	
+	@GetMapping("/login")
+	public String login() {
+		return "login";
+	}
+	
+			
+	
 	// RESTful service to get all tulkkaukset
     @RequestMapping(value="/tulkkaukset", method = RequestMethod.GET)
     public @ResponseBody List<Tulkkaus> tulkkausListRest() {	

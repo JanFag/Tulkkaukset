@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="https://www.thymeleaf.org">
 <head>
-<title>Add a book</title>
+<title>Lisää tulkkaus</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -10,9 +10,9 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-
+<p></p>
 <div class="container">
-  <h2>Lisää uusi tulkkaus</h2>
+  <h2 class="bg-success text-white">Lisää uusi tulkkaus</h2>
   <form action="#" th:object="${tulkkaus}" th:action="@{/save}" method="post">
     <div class="form-group">
       <label for="title">Tilaaja:</label>
@@ -47,7 +47,7 @@
       <label for="pvm">Tulkkauksen päivämäärä ja kellonaika:</label>
       <input type="text" class="form-control" id="osoite" placeholder="Syötä tulkkauksen päivämäärä ja kellonaika" th:field="*{pvm}">
     </div>
-    <button type="submit" class="btn btn-primary">Save</button>
+    <button type="submit" class="btn btn-success">Save</button>
   </form>
 </div>
 
