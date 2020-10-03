@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -19,10 +21,16 @@ public class Tulkkaus {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
+	
+	@NotEmpty(message="Tämä on pakollinen kenttä, syötä tilaajan tiedot")
 	private String tilaaja;
+	@NotEmpty(message="Tämä on pakollinen kenttä, anna lisätietoa tulkkauksen aiheesta")
 	private String aihe;
 	private String tulkkauspaikka;
+	@NotEmpty(message="Tämä on pakollinen kenttä, syötä tulkkauspaikan osoite")
 	private String osoite;
+	@NotEmpty(message="Tämä on pakollinen kenttä")
+	@Size(min=22, message="Syötä tulkkauksen päivä ja aika muodossa pp.kk.vvvv kello hh:mm")
 	private String pvm;
 	
 	@ManyToOne

@@ -34,7 +34,7 @@ role VARCHAR(30) NOT NULL
 
 
 INSERT INTO tulkkauskieli (tulkkauskielennimi)
-VALUES ("suomi"), ("englanti"), ("venäjä"), ("ranska"), ("ruotsi"), ("saksa");
+VALUES ("italia"), ("englanti"), ("venäjä"), ("ranska"), ("ruotsi"), ("saksa");
 
 INSERT INTO tulkkaustyyppi (tulkkaustyypinnimi)
 VALUES ("Paikan päällä"), ("Puhelintulkkaus"), ("Videotulkkaus");

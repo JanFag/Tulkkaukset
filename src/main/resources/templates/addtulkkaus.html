@@ -17,18 +17,22 @@
     <div class="form-group">
       <label for="title">Tilaaja:</label>
       <input type="text" class="form-control" id="tilaaja" placeholder="Syötä tilaaja" th:field="*{tilaaja}">
+      <p class="text-danger" th:if="${#fields.hasErrors('tilaaja')}" th:errors="*{tilaaja}"></p>
     </div>
     <div class="form-group">
       <label for="author">Tulkkauksen aihe:</label>
       <input type="text" class="form-control" id="aihe" placeholder="Anna lisätietoja tulkkauksen aiheesta" th:field="*{aihe}">
+      <p class="text-danger" th:if="${#fields.hasErrors('aihe')}" th:errors="*{aihe}"></p>
     </div>
     <div class="form-group">
       <label for="year">Tulkkauspaikka:</label>
-      <input type="text" class="form-control" id="tulkkauspaikka" placeholder="Syötä tulkkauspaikka" th:field="*{tulkkauspaikka}">
+      <input type="text" class="form-control" id="tulkkauspaikka" placeholder="Tarkenna tarvittaessa tulkkauspaikka" th:field="*{tulkkauspaikka}">
+      <p class="text-danger" th:if="${#fields.hasErrors('tulkkauspaikka')}" th:errors="*{tulkkauspaikka}"></p>
     </div>
     <div class="form-group">
       <label for="osoite">Tulkkauspaikan osoite:</label>
       <input type="text" class="form-control" id="osoite" placeholder="Syötä tulkkauspaikan osoite" th:field="*{osoite}">
+      <p class="text-danger" th:if="${#fields.hasErrors('osoite')}" th:errors="*{osoite}"></p>
     </div>
   
     <div class="form-group col-md-4">
@@ -45,7 +49,8 @@
     </div>
         <div class="form-group">
       <label for="pvm">Tulkkauksen päivämäärä ja kellonaika:</label>
-      <input type="text" class="form-control" id="osoite" placeholder="Syötä tulkkauksen päivämäärä ja kellonaika" th:field="*{pvm}">
+      <input type="text" class="form-control" id="osoite" placeholder="pp.kk.vvvv kello hh:mm" th:field="*{pvm}">
+      <p class="text-danger" th:if="${#fields.hasErrors('pvm')}" th:errors="*{pvm}"></p>
     </div>
     <button type="submit" class="btn btn-success">Save</button>
   </form>
