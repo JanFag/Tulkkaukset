@@ -7,6 +7,6 @@ import org.springframework.data.repository.CrudRepository;
 
 
 public interface TulkkaustyyppiRepository extends CrudRepository<Tulkkaustyyppi, Long> {
-
+	List<Tulkkaustyyppi>findAll();
 	
 }
