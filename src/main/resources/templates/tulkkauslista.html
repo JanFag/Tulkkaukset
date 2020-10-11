@@ -35,7 +35,7 @@
 				<th>Tulkkausksen päivä ja aika</th>
 				<th sec:authorize="hasAuthority('ADMIN')"></th>
 				<th sec:authorize="hasAuthority('ADMIN')"></th>
-				
+				<th sec:authorize="hasAuthority('ADMIN')"></th>
 				
 				
 			</tr>
@@ -51,6 +51,8 @@
 					th:href="@{/delete/{id}(id=${tulkkaus.id})}" class="btn btn-danger">Poista</a></td>
 				<td sec:authorize="hasAuthority('ADMIN')"><a
 					th:href="@{/edit/{id}(id=${tulkkaus.id})}" class="btn btn-danger">Muokkaa</a></td>
+				<td sec:authorize="hasAuthority('ADMIN')"><a
+					th:href="@{/cancel/{id}(id=${tulkkaus.id})}" class="btn btn-danger">Peruuta</a></td>
 			</tr>
 		</table>
 		<a sec:authorize="hasAuthority('ADMIN')" href="/add"

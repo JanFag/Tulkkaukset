@@ -1,5 +1,6 @@
 package projekti.tulkkaukset.web;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,6 +25,7 @@ import projekti.tulkkaukset.domain.TulkkaustyyppiRepository;
 @Controller
 public class TulkkausController {
 
+	
 	@Autowired
 	private TulkkausRepository repository;
 
@@ -32,6 +34,9 @@ public class TulkkausController {
 
 	@Autowired
 	private TulkkaustyyppiRepository trepository;
+	
+	@Autowired
+	private SendEmailServiceImpl sendEmailService;
 
 	@GetMapping(value = { "/", "/tulkkauslista" })
 	public String index(Model model) {
@@ -61,6 +66,7 @@ public class TulkkausController {
 		model.addAttribute("tulkkaus", new Tulkkaus());
 		model.addAttribute("tulkkaustyypit", trepository.findAll());
 		model.addAttribute("tulkkauskielet", krepository.findAll());
+		
 		return "addtulkkaus";
 	}
 
@@ -71,10 +77,42 @@ public class TulkkausController {
 			model.addAttribute("tulkkauskielet", krepository.findAll());
 			return "addtulkkaus";
 		}
+		
 		repository.save(tulkkaus);
+		sendEmailService.sendEmail("janica.fagerblom@gmail.com", "Sinulle on varattu uusi tulkkaus", 
+				"Tulkkausksen tiedot: \n" + 
+				"Aika: " + tulkkaus.getPvm() + "\n" + 
+				"Kieli: " + tulkkaus.getTulkkauskieli().getTulkkauskielennimi() + "\n" +
+				"Tulkkauksen tyyppi: " + tulkkaus.getTulkkaustyyppi().getTulkkaustyypinnimi() + "\n" +
+				"Tulkkauksen aihe: " + tulkkaus.getAihe() + "\n" +
+				"Tilaaja: " + tulkkaus.getTilaaja() + "\n" +
+				"Tulkkauspaikan osoite: " + tulkkaus.getOsoite() + "\n");
 		return "redirect:/";
 	}
 
+	@GetMapping("/cancel/{id}")
+	public String cancelTulkkaus(@PathVariable("id") Long tulkkausId, Model model) {
+		List<Tulkkaus> tulkkaus = new ArrayList<>();
+		tulkkaus.addAll(repository.findAll());
+		int index = 0;
+		for(int i = 0; i<tulkkaus.size();i++) {
+			if(tulkkaus.get(i).getId()==tulkkausId) {
+				index = i;
+			}
+		}
+		
+		sendEmailService.sendEmail("janica.fagerblom@gmail.com", "Seuraava tulkkaus on PERUTTU", 
+				"PERUTETUN tulkkausksen tiedot: \n" + 
+				"Aika: " + tulkkaus.get(index).getPvm() + "\n" + 
+				"Kieli: " + tulkkaus.get(index).getTulkkauskieli().getTulkkauskielennimi() + "\n" +
+				"Tulkkauksen tyyppi: " + tulkkaus.get(index).getTulkkaustyyppi().getTulkkaustyypinnimi() + "\n" +
+				"Tulkkauksen aihe: " + tulkkaus.get(index).getAihe() + "\n" +
+				"Tilaaja: " + tulkkaus.get(index).getTilaaja() + "\n" +
+				"Tulkkauspaikan osoite: " + tulkkaus.get(index).getOsoite() + "\n");
+		repository.deleteById(tulkkausId);
+		return "redirect:../";
+	}
+	
 	@GetMapping("/delete/{id}")
 	public String deleteTulkkaus(@PathVariable("id") Long tulkkausId, Model model) {
 		repository.deleteById(tulkkausId);
