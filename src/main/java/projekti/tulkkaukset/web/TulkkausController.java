@@ -128,13 +128,38 @@ public class TulkkausController {
 	}
 	
 	@PostMapping("/editvalidation")
-	public String editValidation(Model model, @Valid Tulkkaus tulkkaus, BindingResult bindingResult) {
+	public String editValidation(Model model, @Valid Tulkkaus tulkkaus1, BindingResult bindingResult) {
 			if (bindingResult.hasErrors()) {
 				model.addAttribute("tulkkaustyypit", trepository.findAll());
 				model.addAttribute("tulkkauskielet", krepository.findAll());
 				return "edittulkkaus";
 			}
-			repository.save(tulkkaus);
+			
+			List<Tulkkaus> tulkkaus = new ArrayList<>();
+			tulkkaus.addAll(repository.findAll());
+			int index = 0;
+			for(int i = 0; i<tulkkaus.size();i++) {
+				if(tulkkaus.get(i).getId()==tulkkaus1.getId()) {
+					index = i;
+				}
+			}
+			sendEmailService.sendEmail("janica.fagerblom@gmail.com", "Seuraavan tulkkauksen tietoja on MUUTETTU", 
+					"Muutetun tulkkausksen VANHAT tiedot: \n" + 
+					"Aika: " + tulkkaus.get(index).getPvm() + "\n" + 
+					"Kieli: " + tulkkaus.get(index).getTulkkauskieli().getTulkkauskielennimi() + "\n" +
+					"Tulkkauksen tyyppi: " + tulkkaus.get(index).getTulkkaustyyppi().getTulkkaustyypinnimi() + "\n" +
+					"Tulkkauksen aihe: " + tulkkaus.get(index).getAihe() + "\n" +
+					"Tilaaja: " + tulkkaus.get(index).getTilaaja() + "\n" +
+					"Tulkkauspaikan osoite: " + tulkkaus.get(index).getOsoite() + ".\n\n" +
+					"Muutetun tulkkausksen UUDET tiedot: \n" + 
+					"Aika: " + tulkkaus1.getPvm() + "\n" + 
+					"Kieli: " + tulkkaus1.getTulkkauskieli().getTulkkauskielennimi() + "\n" +
+					"Tulkkauksen tyyppi: " + tulkkaus1.getTulkkaustyyppi().getTulkkaustyypinnimi() + "\n" +
+					"Tulkkauksen aihe: " + tulkkaus1.getAihe() + "\n" +
+					"Tilaaja: " + tulkkaus1.getTilaaja() + "\n" +
+					"Tulkkauspaikan osoite: " + tulkkaus1.getOsoite() + "\n");
+			repository.save(tulkkaus1);
+			
 			return "redirect:/";
 		}
 
