@@ -26,13 +26,13 @@
 			<h4 class="text-secondary">Varatut tulkkaukset</h4>
 
 			<tr>
-				<th>Tilaaja</th>
-				<th>Aihe</th>
-				<th>Tulkkauspaikka</th>
-				<th>Tulkkauspaikan osoite</th>
-				<th>Tulkkauskieli</th>
-				<th>Tulkkauksen tyyppi</th>
-				<th>Tulkkausksen päivä ja aika</th>
+				<th class="text-info">Tilaaja</th>
+				<th class="text-info">Aihe</th>
+				<th class="text-info">Tulkkauspaikka</th>
+				<th class="text-info">Tulkkauspaikan osoite</th>
+				<th class="text-info">Tulkkauskieli</th>
+				<th class="text-info">Tulkkauksen tyyppi</th>
+				<th class="text-info">Tulkkausksen päivä ja aika</th>
 				<th sec:authorize="hasAuthority('ADMIN')"></th>
 				<th sec:authorize="hasAuthority('ADMIN')"></th>
 				<th sec:authorize="hasAuthority('ADMIN')"></th>
@@ -50,7 +50,7 @@
 				<td sec:authorize="hasAuthority('ADMIN')"><a
 					th:href="@{/delete/{id}(id=${tulkkaus.id})}" class="btn btn-danger">Poista</a></td>
 				<td sec:authorize="hasAuthority('ADMIN')"><a
-					th:href="@{/edit/{id}(id=${tulkkaus.id})}" class="btn btn-danger">Muokkaa</a></td>
+					th:href="@{/edit/{id}(id=${tulkkaus.id})}" class="btn btn-warning">Muokkaa</a></td>
 				<td sec:authorize="hasAuthority('ADMIN')"><a
 					th:href="@{/cancel/{id}(id=${tulkkaus.id})}" class="btn btn-danger">Peruuta</a></td>
 			</tr>
