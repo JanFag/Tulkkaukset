@@ -22,18 +22,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-        .authorizeRequests().antMatchers("/css/**").permitAll() // Enable css when logged out
-        .and()
-        .authorizeRequests()
-          .anyRequest().authenticated()
+        .authorizeRequests().anyRequest().authenticated()
           .and()
       .formLogin()
       	.loginPage("/login")
           .defaultSuccessUrl("/")
-          .permitAll()
+          .permitAll() //available for everyone
           .and()
       .logout()
-          .permitAll();
+          .permitAll(); //available for everyone
     }
 	
 	@Autowired
