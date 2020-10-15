@@ -62,7 +62,7 @@ public class TulkkausController {
 	}
 
 	@GetMapping("/add")
-	public String addBook(Model model) {
+	public String addTulkkaus(Model model) {
 		model.addAttribute("tulkkaus", new Tulkkaus());
 		model.addAttribute("tulkkaustyypit", trepository.findAll());
 		model.addAttribute("tulkkauskielet", krepository.findAll());
