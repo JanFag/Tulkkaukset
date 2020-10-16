@@ -7,6 +7,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -91,6 +92,7 @@ public class TulkkausController {
 	}
 
 	@GetMapping("/cancel/{id}")
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public String cancelTulkkaus(@PathVariable("id") Long tulkkausId, Model model) {
 		List<Tulkkaus> tulkkaus = new ArrayList<>();
 		tulkkaus.addAll(repository.findAll());
@@ -114,6 +116,7 @@ public class TulkkausController {
 	}
 	
 	@GetMapping("/delete/{id}")
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public String deleteTulkkaus(@PathVariable("id") Long tulkkausId, Model model) {
 		repository.deleteById(tulkkausId);
 		return "redirect:../";
