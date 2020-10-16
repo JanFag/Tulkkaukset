@@ -50,13 +50,13 @@ public class TulkkausController {
 	}
 
 	// RESTful service to get all tulkkaukset
-	@RequestMapping(value = "/tulkkaukset", method = RequestMethod.GET)
+	@RequestMapping(value = "api/tulkkaukset", method = RequestMethod.GET)
 	public @ResponseBody List<Tulkkaus> tulkkausListRest() {
 		return (List<Tulkkaus>) repository.findAll();
 	}
 
 	// RESTful service to get tulkkaus by id
-	@RequestMapping(value = "/tulkkaus/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "api/tulkkaukset/{id}", method = RequestMethod.GET)
 	public @ResponseBody Optional<Tulkkaus> findTulkkausRest(@PathVariable("id") Long tulkkausId) {
 		return repository.findById(tulkkausId);
 	}
